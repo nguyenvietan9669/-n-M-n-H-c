@@ -1,0 +1,102 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+
+<main>
+    <!--? slider Area Start-->
+    <div class="slider-area ">
+        <div class="slider-active">
+            <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center "
+                 style="background-image : url({% static 'img/background.jpg' %}) !important">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-8 col-md-8">
+                            <div class="hero__caption hero__caption2">
+                                <h1 data-animation="fadeInUp" data-delay=".4s">Giỏ Hàng</h1>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
+                                        <li class="breadcrumb-item"><a href="/cart">Giỏ Hàng</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider Area End-->
+    <!--================Cart Area =================-->
+    <section class="cart_area section-padding40">
+        <div class="box-element">
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Sản Phẩm</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Số Lượng</th>
+                            <th scope="col">Tổng Cộng</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="d-flex">
+                                        {% for a in item.SanPham.anh_set.all %}
+                                        {% if a.LoaiAnh == 0 %}
+                                        <img style="width:50px" src="{{ a.imageURL }}" alt=""/>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <div class="media-body">
+                                        <p>{{item.SanPham.TenSanPham}}</p>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{item.SanPham.Gia}}(đ)</h5>
+                            </td>
+                            <td>
+                                <p class="quantity">{{item.SoLuong}}</p>
+                                <div class="quantity">
+                                    <img data-product="{{item.SanPham.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}">
+                                    <img data-product="{{item.SanPham.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'img/arrow-down.png'%}">
+                                </div>
+                            </td>
+                            <td>
+                                <h5>{{ item.get_total }}(đ)</h5>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>Số Lượng</td>
+                            <td>
+                                {{ donhang.get_cart_items }}
+                            </td>
+                            <td>
+                                <h5>Tổng cộng</h5>
+                            </td>
+                            <td>
+                                <h5>{{ donhang.get_cart_total }}</h5>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="checkout_btn_inner float-right">
+                        <a class="btn" href="{% url 'index' %}">Tiếp tục mua sắm</a>
+                        {% if donhang.get_cart_items > 0 %}
+                        <a class="btn checkout_btn" href="{% url 'checkout' user.id %}">Đi đến thanh toán</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

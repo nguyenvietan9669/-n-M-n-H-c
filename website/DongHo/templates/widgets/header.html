@@ -1,0 +1,147 @@
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Watch</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <mimeMap fileExtension=".appcache" mimeType="text/cache-manifest" />
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/img/favicon.ico' %}">
+    <script type="text/javascript">
+            var user = '{{request.user}}'
+            function getToken(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getToken('csrftoken')
+
+
+    </script>
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/cart.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/flaticon.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/progressbar_barfiller.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/lightslider.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/price_rangs.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/gijgo.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/animate.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/animated-headline.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/slick.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/nice-select.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css'%}">
+
+</head>
+<body>
+<div id="preloader-active">
+    <div class="preloader d-flex align-items-center justify-content-center">
+        <div class="preloader-inner position-relative">
+            <div class="preloader-circle"></div>
+            <div class="preloader-img pere-text">
+                <img src="{% static 'home/img/logom/loder.png'%}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Preloader Start-->
+<header>
+    <!-- Header Start -->
+    <div class="header-area">
+        <div class="main-header header-sticky">
+            <div class="container-fluid">
+                <div class="row menu-wrapper align-items-center justify-content-between">
+                    <div class="header-left d-flex align-items-center">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href=""><img src="{% static 'home/img/logom/logo.png'%}" alt=""></a>
+                        </div>
+                        <!-- Logo-2 -->
+                        <div class="logo2">
+                            <a href=""><img src="{% static 'home/img/logom/logo2.png'%}" alt=""></a>
+                        </div>
+                        <!-- Main-menu -->
+                        <div class="main-menu  d-none d-lg-block">
+                            <nav>
+                                <ul id="navigation">
+                                    <li><a href="{% url 'index' %}">Trang chủ</a></li>
+                                    <li><a href="{% url 'product'  %}">Sản phẩm</a>
+                                         <ul class="submenu">
+                                            <li><a href="{% url 'nam' %}">Đồng Hồ Nam</a></li>
+                                            <li><a href="{% url 'nu' %}">Đồng Hồ Nữ</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="#">Thương Hiệu</a>
+                                        <ul class="submenu">
+                                            <li><a href="{% url 'orient' %}">ORIENT</a></li>
+                                            <li><a href="{% url 'citizen' %}">CITIZEN</a></li>
+                                            <li><a href="{% url 'candino' %}">CANDINO</a></li>
+                                            <li><a href="{% url 'daniel' %}">DANIEL WELLINGTON</a></li>
+                                            <li><a href="{% url 'casio' %}">CASIO</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                    <div class="header-right1 d-flex align-items-center">
+                        <div class="search">
+                            <ul class="d-flex align-items-center">
+                                <li>
+                                    <!-- Search Box -->
+                                    <form action="{% url 'search' %}" class="form-box f-right ">
+                                        <input type="text" name="Search" placeholder="Tìm kiếm sản phẩm...">
+                                        <div class="search-icon">
+                                            <img style="width:20px" src="{% static 'img/search.png' %}">
+                                        </div>
+                                    </form>
+                                </li>
+
+                                {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'profile' user.id %}" class="account-btn ml-0">{{ user.username }}</a>
+                                    <a href="{% url 'logout' %}" class="account-btn ml-0">Đăng xuất</a>
+                                </li>
+                                {% else %}
+                                <li>
+                                    <a href="{% url 'login' %}" class="account-btn">Đăng Nhập</a>
+                                </li>
+                                {% endif %}
+                                <li>
+                                    <div class="card-stor">
+                                        <a href="{% url 'cart' %}"><img src="{% static 'home/img/icon/card.svg'%}"
+                                                                        alt="">
+                                            <span>{{tongitem}}</span></a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Mobile Menu -->
+                    <div class="col-12">
+                        <div class="mobile_menu d-block d-lg-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+</header>
+</body>

@@ -1,0 +1,72 @@
+{% extends 'Admin/trangchu.html' %}
+{% block content %}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body"><h5 class="card-title">Danh Sách Đơn Hàng
+                    <table class="mb-0 table table-striped">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Đơn Hàng Của</th>
+                            <th>Trạng Thái</th>
+                            <th>Thao Tác</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in donhang.object_list %}
+                        <tr>
+                            <th scope="row">{{ item.id }}</th>
+                            <td>{{ item.user}}</td>
+                            <td>{{ item.DaXuLy }}</td>
+                            <td><a href="http://127.0.0.1:8000/admin/user/customeruser/{{item.id}}/change/" class="btn btn-warning btn-xs" >Xử Lý</a>
+                            <a href="" class="btn btn-danger btn-xs" >Xóa</a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-left: 350px;">
+                    {% if donhang.has_previous %}
+                    <a style="margin:0 0.1em;
+                                    display: inline-block;
+                                    padding:0.1em 0.5em;
+                                    color: #B9B9B9;
+                                    font-size : 1.3em;" href="?page=1"><p> << </p></a>
+                    <a style=" margin:0 0.1em;
+                                    display: inline-block;
+                                    padding:0.1em 0.5em;
+                                    color: #B9B9B9;
+                                    font-size : 1.3em;" href="?page={{donhang.previous_page_number}}"><p> < </p></a>
+                    {% endif %}
+                    {% for num in donhang.paginator.page_range %}
+                    {% if donhang.number == num %}
+                    <Strong>{{num}}</Strong>
+                    {% elif num > donhang.number|add:'-3' and num < donhang.number|add:'3' %}
+                    <a style=" margin:0 0.1em;
+                                    display: inline-block;
+                                    padding:0.1em 0.5em;
+                                    color: orange;
+                                    " href="?page={{num}}">{{ num }}</a>
+                    {% endif %}
+                    {% endfor %}
+                    {% if donhang.has_next %}
+                    <a style=" margin:0 0.1em;
+                                    display: inline-block;
+                                    padding:0.1em 0.5em;
+                                    color: #B9B9B9;
+                                    font-size : 1.3em;" href="?page={{donhang.next_page_number}}"><p> > </p></a>
+                    <a style=" margin:0 0.1em;
+                                        display: inline-block;
+                                        padding:0.1em 0.5em;
+                                        color: #B9B9B9;
+                                        font-size : 1.3em;" href="?page={{donhang.paginator.num_pages}}"><p> >> </p></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

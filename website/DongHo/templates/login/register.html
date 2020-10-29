@@ -1,0 +1,92 @@
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Shop | eCommerce</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/img/favicon.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/flaticon.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/progressbar_barfiller.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/lightslider.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/price_rangs.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/gijgo.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/animate.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/animated-headline.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/slick.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/nice-select.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css'%}">
+
+</head>
+
+<body>
+<!-- header end -->
+<main class="login-bg">
+    <!-- Register Area Start -->
+    <div class="register-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="register-form text-center">
+                        <!-- Login Heading -->
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="register-heading">
+                                <h1>Đăng Ký</h1>
+                                <p>Chào mừng bạn đến với website của chúng tôi</p>
+                            </div>
+                            <!-- Single Input Fields -->
+                            <div class="input-box">
+                                <div class="single-input-fields">
+                                    <label>Họ và tên lót</label>
+                                    <input type="text" name="last" required = 'true' placeholder="Nhập họ...">
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Tên</label>
+                                    <input type="text" name="first" required = 'true' placeholder="Nhập tên">
+                                </div>
+                                 <div class="single-input-fields">
+                                    <label>Số điện thoại</label>
+                                    <input type="number" name="phone" required = 'true' placeholder="Nhập Số điện thoại">
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Email</label>
+                                    <input type="email" name="email" required = 'true' placeholder="Nhập Email">
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Ngày Sinh</label>
+                                    <input type="date" name="birth" required = 'true' placeholder="Nhập Ngày sinh">
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" name="address" required = 'true' placeholder="Nhập Địa chỉ">
+                                </div>
+                            </div>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {{ message }}
+                            {% endfor %}
+                            {% endif %}
+                            <!-- form Footer -->
+                            <div class="register-footer">
+                                <p> Bạn đã có tài khoản? <a href="{% url 'login' %}"> Đăng nhập</a> Tại đây</p>
+                                <button class="submit-btn3">Gửi mã</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Area End -->
+</main>
+</body>

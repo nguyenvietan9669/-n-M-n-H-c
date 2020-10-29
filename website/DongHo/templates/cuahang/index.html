@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+{% include '../widgets/header.html' %}
+<body>
+<main>
+    {% block content %}
+    {% endblock %}
+    <!--? Services -->
+    {% include '../widgets/services.html' %}
+    <!--? Footer -->
+    {% include '../widgets/footer.html' %}
+
+</main>
+
+
+
+<!-- JS here -->
+<!-- Jquery, Popper, Bootstrap -->
+<script src="{% static 'home/js/vendor/modernizr-3.5.0.min.js'%}"></script>
+<script src="{% static 'home/js/vendor/jquery-1.12.4.min.js'%}"></script>
+<script src="{% static 'home/js/popper.min.js'%}"></script>
+<script src="{% static 'home/js/bootstrap.min.js'%}"></script>
+
+<!-- Slick-slider , Owl-Carousel ,slick-nav -->
+<script src="{% static 'home/js/owl.carousel.min.js'%}"></script>
+<script src="{% static 'home/js/slick.min.js'%}"></script>
+<script src="{% static 'home/js/jquery.slicknav.min.js'%}"></script>
+
+<!-- One Page, Animated-HeadLin, Date Picker , price, light-slider -->
+<script src="{% static 'home/js/wow.min.js'%}"></script>
+<script src="{% static 'home/js/animated.headline.js'%}"></script>
+<script src="{% static 'home/js/jquery.magnific-popup.js'%}"></script>
+<script src="{% static 'home/js/gijgo.min.js'%}"></script>
+<script src="{% static 'home/js/lightslider.min.js'%}"></script>
+<script src="{% static 'home/js/price_rangs.js'%}"></script>
+
+<!-- Nice-select, sticky,Progress -->
+<script src="{% static 'home/js/jquery.nice-select.min.js'%}"></script>
+<script src="{% static 'home/js/jquery.sticky.js'%}"></script>
+<script src="{% static 'home/js/jquery.barfiller.js'%}"></script>
+
+<!-- counter , waypoint,Hover Direction -->
+<script src="{% static 'home/js/jquery.counterup.min.js'%}"></script>
+<script src="{% static 'home/js/waypoints.min.js'%}"></script>
+<script src="{% static 'home/js/jquery.countdown.min.js'%}"></script>
+<script src="{% static 'home/js/hover-direction-snake.min.js'%}"></script>
+
+<!-- contact js -->
+<script src="{% static 'home/js/contact.js'%}"></script>
+<script src="{% static 'home/js/jquery.form.js'%}"></script>
+<script src="{% static 'home/js/jquery.validate.min.js'%}"></script>
+<script src="{% static 'home/js/mail-script.js'%}"></script>
+<script src="{% static 'home/js/jquery.ajaxchimp.min.js'%}"></script>
+
+<!-- Jquery Plugins, main Jquery -->
+<script src="{% static 'home/js/plugins.js'%}"></script>
+<script src="{% static 'home/js/main.js'%}"></script>
+<script type="text/javascript" src="{% static 'home/js/cart.js'%}"></script>
+
+</body>
+</html>

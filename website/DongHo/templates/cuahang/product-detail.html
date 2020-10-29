@@ -1,0 +1,144 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="product_image_area section-padding40">
+    <div class="container">
+        <div class="row s_product_inner">
+            <div class="col-lg-5">
+                <div class="product_slider_img">
+                    <div id="vertical">
+                        {% for item in anh %}
+                        {% if item.LoaiAnh == 1 %}
+                        <div data-thumb="{{ item.imageURL }}">
+                            <img src="{{ item.imageURL }}" class="w-100">
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3>{{ product.TenSanPham }}</h3>
+                    <h2>{{ product.Gia }} đ</h2>
+                    <ul class="list">
+                        <li>
+                            <a class="active" href="#">
+                                <span>Thương Hiệu</span> : {{ product.ThuongHieu.TenThuongHieu }}</a>
+                        </li>
+                        <li>
+                            <a href="#"> <span>Giới Tính</span> : {{ product.GioiTinh }}</a>
+                        </li>
+                    </ul>
+                    <p>
+                        Mill Oil is an innovative oil filled radiator with the most modern technology. If you are
+                        looking for something that can make your interior look awesome, and at the same time.
+                    </p>
+                    <div class="card_area">
+                        <div class="product_count d-inline-block">
+                            <span class="inumber-decrement"> - </span>
+                            <input class="input-number" type="text" value="1" min="0" max="10">
+                            <span class="number-increment"> + </span>
+                        </div>
+                        <div class="add_to_cart">
+                            <a href="#" class="btn">add to cart</a>
+                        </div>
+                        <div class="social_icon">
+                            <a href="#" class="fb"><i></i></a>
+                            <a href="#" class="tw"><i></i></a>
+                            <a href="#" class="li"><i></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" style="padding-top:20px">
+        <div class="properties__button text-center">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-MoTa-tab" data-toggle="tab" href="#nav-MoTa"
+                       role="tab" aria-controls="nav-MoTa" aria-selected="true" style="color:black">Mô Tả</a>
+                    <a class="nav-item nav-link" id="nav-ThongTin-tab" data-toggle="tab" href="#nav-ThongTin"
+                       role="tab" aria-controls="nav-ThongTin" aria-selected="false" style="color:black">Thông Tin</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- card mota --->
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-MoTa" role="tabpanel" aria-labelledby="nav-MoTa-tab">
+            <div class="container">
+                <br>{{ product.MoTa }}</br>
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="nav-ThongTin" role="tabpanel" aria-labelledby="nav-ThongTin-tab">
+            <div style="padding:50px">
+                <h1 style="color:orange">Thông Tin Về Sản Phẩm</h1>
+                <br><span>Xuất Xứ : {{ product.ThongTin.XuatXu }}</span></br>
+                <br><span>Máy : {{ product.ThongTin.May }}</span></br>
+                <br><span>Bảo Hành : {{ product.ThongTin.BaoHanh }}</span></br>
+                <br><span>Dây Đeo : {{ product.ThongTin.DayDeo }}</span></br>
+                <br><span>Chống Nước : {{ product.ThongTin.ChongNuoc }} </span></br>
+                <br><span>Đường Kính : {{ product.ThongTin.DuongKinh }}</span></br>
+                <br><span>Mặt Kính : {{ product.ThongTin.MatKinh }} </span></br>
+            </div>
+        </div>
+        <div class="container" style="padding-top : 50px">
+            <h2 style="color:orange"> Bình Luận....</h2>
+            <span> Số lượng : <b>{{binhluan.count}}</b></span>
+            <div class="comment_list" style="padding-top:10px">
+                <div class="review_item">
+                    {% for item in binhluan %}
+                    <div class="box-element" style="padding-top:10px">
+                        <div class="media">
+                            <div class="d-flex">
+                                <img src="assets/img/gallery/review-1.png" alt=""/>
+                            </div>
+                            <div class="media-body">
+                                <strong>{{ item.user }} </strong>
+                                <a href="{% url 'delete-comment' item.id product.id%}" style="float:right"><img
+                                    style="width:20px" src="{% static 'img/delete-forever.png' %}"></a>
+                                <h5>{{ item.Ngay }}</h5>
+
+                            </div>
+                        </div>
+                        <p>
+                            {{ item.NoiDung }}
+                        </p>
+                        <div style="padding-top:20px">
+                            <img style="width:20px;" src="{% static 'img/like.png' %}"> <span>{{ item.Thich }}</span>
+                            <img style="width:20px" src="{% static 'img/dislike.png' %}">
+                            <span>{{ item.KhongThich }}</span>
+                        </div>
+                        <div style="padding-top:10px">
+                            <a href=""><img style="width:20px;" src="{% static 'img/thumb-up.png' %}"><b>Thích</b></a>
+                            <a href=""><img style="width:20px" src="{% static 'img/thumb-down.png' %}"><b>Không Thích</b></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+                </div>
+                {% if user.is_authenticated %}
+                <div>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="comment" value="{{ product.id }}">
+                        <div class="single-input-fields">
+                            <input type="text" name="context" placeholder="Nhập bình luận....">
+                        </div>
+                        <div style="padding-top : 20px">
+                            <input type="submit" value="Bình Luận" class="btn btn-outline-success">
+                        </div>
+                    </form>
+                </div>
+                {% else %}
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

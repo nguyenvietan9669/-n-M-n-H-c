@@ -1,0 +1,182 @@
+{% load static %}
+
+<section class="properties new-arrival fix">
+    <div class="container">
+        <!-- Section tittle -->
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="1s"
+                     data-wow-delay=".2s">
+                    <h2>Sản Phẩm Phổ Biến</h2>
+                    <P>Đây là những sản phẩm hàng đầu của chúng tôi</P>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="properties__button text-center">
+                    <!--Nav Button  -->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-Sofa-tab" data-toggle="tab" href="#nav-Sofa"
+                               role="tab" aria-controls="nav-Sofa" aria-selected="true">ORIENT</a>
+                            <a class="nav-item nav-link" id="nav-Table-tab" data-toggle="tab" href="#nav-Table"
+                               role="tab" aria-controls="nav-Table" aria-selected="false">CITIZEN</a>
+                            <a class="nav-item nav-link" id="nav-Chair-tab" data-toggle="tab" href="#nav-Chair"
+                               role="tab" aria-controls="nav-Chair" aria-selected="false">CANDINO</a>
+
+                            <a class="nav-item nav-link" id="nav-Bed-tab" data-toggle="tab" href="#nav-Bed"
+                               role="tab" aria-controls="nav-Bed" aria-selected="false">DANIEL WELLINGTON</a>
+                            <a class="nav-item nav-link" id="nav-Casio-tab" data-toggle="tab" href="#nav-Cas"
+                               role="tab" aria-controls="nav-Cas" aria-selected="false">CASIO</a>
+                        </div>
+                    </nav>
+                    <!--End Nav Button  -->
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <!-- Nav Card -->
+            <div class="tab-content" id="nav-tabContent">
+                <!-- card one -->
+                <div class="tab-pane fade show active" id="nav-Sofa" role="tabpanel" aria-labelledby="nav-Sofa-tab">
+                     <div class="row">
+                        {% for item in sanpham %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                    {% for a in item.anh_set.all %}
+                                    {% if a.LoaiAnh == 0 %}
+                                    <img src="{{ a.imageURL }}" alt="">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="popular-caption">
+                                    <h2><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <br>
+                                    <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+
+                                </div>
+                                <div>
+                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Card two -->
+                <div class="tab-pane fade" id="nav-Table" role="tabpanel" aria-labelledby="nav-Table-tab">
+                     <div class="row">
+                        {% for item in sanpham1 %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                    {% for a in item.anh_set.all %}
+                                    {% if a.LoaiAnh == 0 %}
+                                    <img src="{{ a.imageURL }}" alt="">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="popular-caption">
+                                    <h2><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <br>
+                                    <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+
+                                </div>
+                                <div>
+                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- Card three -->
+                <div class="tab-pane fade" id="nav-Chair" role="tabpanel" aria-labelledby="nav-Chair-tab">
+                     <div class="row">
+                        {% for item in sanpham2 %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                    {% for a in item.anh_set.all %}
+                                    {% if a.LoaiAnh == 0 %}
+                                    <img src="{{ a.imageURL }}" alt="">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="popular-caption">
+                                    <h2><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <br>
+                                    <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+
+                                </div>
+                                <div>
+                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Card FOUR -->
+                <div class="tab-pane fade" id="nav-Bed" role="tabpanel" aria-labelledby="nav-Bed-tab">
+                     <div class="row">
+                        {% for item in sanpham3 %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                    {% for a in item.anh_set.all %}
+                                    {% if a.LoaiAnh == 0 %}
+                                    <img src="{{ a.imageURL }}" alt="">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="popular-caption">
+                                    <h2><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <br>
+                                    <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+
+                                </div>
+                                <div>
+                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <!--card-Five -->
+                <div class="tab-pane fade" id="nav-Cas" role="tabpanel" aria-labelledby="nav-Casio-tab">
+                     <div class="row">
+                        {% for item in sanpham4 %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                    {% for a in item.anh_set.all %}
+                                    {% if a.LoaiAnh == 0 %}
+                                    <img src="{{ a.imageURL }}" alt="">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="popular-caption">
+                                    <h2><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <br>
+                                    <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+
+                                </div>
+                                <div>
+                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

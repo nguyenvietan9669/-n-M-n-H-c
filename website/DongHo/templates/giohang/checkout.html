@@ -1,0 +1,164 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="container row mt-100">
+    <div class="col-lg-6">
+        <div class="box-element" id="form-wrapper">
+            <form id="form">
+                <div id="user-info">
+                    <div class="form-field">
+                        <output required class="form-control" type="text" name="name">{{user.first_name }}</output>
+                    </div>
+                    <div class="form-field">
+                        <output required class="form-control" type="email" name="email">{{user.email }}</output>
+                    </div>
+                </div>
+
+                <div id="shipping-info">
+                    <hr>
+                    <p>Thông tin giao hàng:</p>
+                    <hr>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="username" placeholder="Tên người nhận..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="text" name="address" placeholder="Địa chỉ..">
+                    </div>
+                    <div class="form-field">
+                        <input class="form-control" type="number" name="phone" placeholder="Số điện thoại..">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <br>
+        <div class="box-element hidden" id="payment-info">
+            <small>Paypal Options</small>
+            <!--<button id="make-payment">Make payment</button>-->
+            <div id="paypal-button-container"></div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-6">
+        <div class="box-element" >
+            <a class="btn btn-outline-dark" href="{% url 'cart' %}">&#x2190; Quay lại giỏ hàng</a>
+            <hr>
+            <h3>Chi tiết đơn hàng</h3>
+            <hr>
+            {% for item in items %}
+            <div class="cart-row">
+                {% for a in item.SanPham.anh_set.all %}
+                {% if a.LoaiAnh == 0 %}
+                <div style="flex:2"><img class="row-image" style="width :50px" src="{{ a.imageURL }}"></div>
+                {% endif %}
+                {% endfor %}
+                <div style="flex:2"><p>{{item.SanPham.TenSanPham}}</p></div>
+                <div style="flex:1"><p>{{item.SanPham.Gia}}</p></div>
+                <div style="flex:1"><p>{{item.SoLuong}}x</p></div>
+            </div>
+            {% endfor %}
+            <h5>Sản Phẩm: {{ donhang.get_cart_items }}</h5>
+            <h5>Tổng cộng: {{ donhang.get_cart_total }}</h5>
+        </div>
+    </div>
+</div>
+
+<script src="https://www.paypal.com/sdk/js?client-id=AXub7qxIwjBrlg4kJjUAHjWxfk1JESzUT4k5-1UnVEvjeJUHD_YFwzoS3_Ot9wd0CXjVD2iXgYeKSZfX&currency=USD"></script>
+
+<script>
+        function getCookie(name) {
+		    var cookieValue = null;
+		    if (document.cookie && document.cookie !== '') {
+		        var cookies = document.cookie.split(';');
+		        for (var i = 0; i < cookies.length; i++) {
+		            var cookie = cookies[i].trim();
+		            // Does this cookie string begin with the name we want?
+		            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+		                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+		                break;
+		            }
+		        }
+		    }
+		    return cookieValue;
+		}
+		var csrftoken = getCookie('csrftoken');
+
+       var total = '{{ usd |floatformat:0 }}'
+       var userID = '{{ user.id }}'
+
+       function completeOrder(){
+
+             var shippingInfo = {
+				'username':null,
+				'address':null,
+				'phone':null,
+			}
+
+	    		shippingInfo.username = form.username.value
+		    	shippingInfo.address = form.address.value
+		    	shippingInfo.phone = form.phone.value
+                console.log('Shipping Info:', shippingInfo)
+            var url = "{% url 'complete' %}"
+            fetch(url,{
+                method:'POST',
+                headers:{
+                    'Content-type':'application/json',
+                    'X-CSRFToken':csrftoken,
+                },
+                body:JSON.stringify({
+                    'userId' : userID,
+                    'shippingname' : shippingInfo.username,
+                    'shippingaddress' : shippingInfo.address,
+                    'shippingphone' : shippingInfo.phone,
+                    }),
+            })
+            .then((response) => response.json())
+	    	.then((data) => {
+				console.log('Success:', data);
+				})
+       }
+
+        // Render the PayPal button into #paypal-button-container
+        paypal.Buttons({
+
+                style: {
+                color:  'blue',
+                shape:  'pill',
+                label:  'pay',
+                height: 40
+            },
+            // Set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '0.01'
+                        }
+                    }]
+                });
+            },
+
+            // Finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    // Show a success message to the buyer
+                    completeOrder()
+                    alert('Bạn đã thanh toán thành công bởi tài khoản : ' + details.payer.name.given_name + '!');
+                    window.location.href = "{% url 'index' %}"
+                });
+            }
+
+
+        }).render('#paypal-button-container');
+
+
+
+
+
+</script>
+
+
+{% endblock content %}
+
+

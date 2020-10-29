@@ -1,0 +1,86 @@
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Shop | eCommerce</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/img/favicon.ico' %}">
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'home/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'home/css/flaticon.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/progressbar_barfiller.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/lightslider.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/price_rangs.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/gijgo.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/animate.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/animated-headline.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/magnific-popup.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/fontawesome-all.min.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/themify-icons.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/slick.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/nice-select.css'%}">
+    <link rel="stylesheet" href="{% static 'home/css/style.css'%}">
+
+</head>
+
+<body>
+<!-- header end -->
+<main class="login-bg">
+    <!-- Register Area Start -->
+    <div class="register-form-area">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-lg-8">
+                    <div class="register-form text-center">
+                        <!-- Login Heading -->
+                        <form method="post" action="{% url 'final' %}">
+                            {% csrf_token %}
+                            <div class="register-heading">
+                                <p>Hoàn thành đăng ký</p>
+                            </div>
+                            <!-- Single Input Fields -->
+                            <div class="input-box">
+                                <div class="single-input-fields">
+                                    <label>Tên tài khoản</label>
+                                    <input type="hidden" name="email" value="{{ email }}">
+                                    <input type="hidden" name="address" value="{{ address }}">
+                                    <input type="hidden" name="birth" value="{{ birth }}">
+                                    <input type="hidden" name="last" value="{{ last }}">
+                                    <input type="hidden" name="first" value="{{ first }}">
+                                    <input type="hidden" name="phone" value="{{ phone }}">
+                                    <input type="text" name="username" required = 'true' placeholder="Tên tài khoản">
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Mật khẩu </label>
+                                    <input type="password" name="password" required = 'true' placeholder="Mật khẩu">
+                                </div>
+                                <div class="single-input-fields">
+                                    <label>Nhập lại mật khẩu</label>
+                                    <input type="password" name="re-password" required = 'true' placeholder="Nhập lại mật khẩu">
+                                </div>
+
+                            </div>
+                            {% if messages %}
+                            {% for message in messages %}
+                            {{ message }}
+                            {% endfor %}
+                            {% endif %}
+                            <!-- form Footer -->
+                            <div class="register-footer">
+                                <p> Bạn đã có tài khoản? <a href="{% url 'login' %}"> Đăng nhập</a> Tại đây</p>
+                                <button class="submit-btn3">Đăng ký</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Register Area End -->
+</main>
+</body>

@@ -1,0 +1,48 @@
+{% extends 'cuahang/index.html' %}
+
+{% block content %}
+<div class="billing_details mt-50">
+    <div class="card-body mt-10">
+        <div class="col-lg-8">
+            <h1>Thông tin tài khoản</h1>
+            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                <div class="col-md-6 form-group p_star">
+                    <label>Tên</label>
+                    <output type="text" class="form-control">{{ user.first_name }}</output>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                    <label>Họ và tên lót</label>
+                    <output type="text" class="form-control"  name="last">{{ user.last_name }}</output>
+                </div>
+                <div class="col-md-12 form-group">
+                    <label>Tên tài khoản</label>
+                    <out type="text" class="form-control"  name="username" >{{ user.username }}</out>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                    <label>Số điện thoại</label>
+                    <output type="text" class="form-control"  name="phone">{{ user.phone }}</output>
+                </div>
+                <div class="col-md-6 form-group p_star">
+                    <label>Email</label>
+                    <output type="text" class="form-control"  name="email">{{ user.email }} </output>
+                </div>
+                <div class="col-md-12 form-group p_star">
+                    <label>Địa chỉ</label>
+                    <output type="text" class="form-control"  name="add">{{ user.address }} </output>
+                </div>
+                <div class="col-md-12 form-group p_star">
+                    <label>Ngày sinh</label>
+                    <output class="form-control"  name="birth">{{ user.birthdate }}</output>
+                </div>
+                <div class="col-md-12 form-group">
+                    <div class="checkout-cap">
+                       <a href="{% url 'logout' %}" class="btn">Đăng xuất</a>
+                        <a href="{% url 'password_change' %}" class="btn">Đổi mật khẩu</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

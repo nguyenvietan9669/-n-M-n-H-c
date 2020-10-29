@@ -1,0 +1,98 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area ">
+    <div class="slider-active">
+        <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center"
+                    style="background-image : url({% static 'img/background.jpg' %}) !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8 col-md-8">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="fadeInUp" data-delay=".4s">Sản Phẩm</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'product' %}">Sản Phẩm</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- slider Area End-->
+<!--? Properties Start -->
+<section class="properties new-arrival fix">
+    <div class="container">
+        <!-- Section tittle -->
+        <div class="row justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-10">
+                <div class="section-tittle mb-60 text-center wow fadeInUp" data-wow-duration="1s" data-wow-delay=".2s">
+                    <h2>Sản Phẩm</h2>
+                    <P>Khám phá bộ sưu tập đồng hồ uy tín của Chúng Tôi</P>
+                        <p>với độ chính xác vượt trội.</P>
+                </div>
+            </div>
+        </div>
+        <h1 style="padding-bottom:20px; color:orange"> Tìm kiếm với : <b>{{ tim }}</b></h1>
+        <div class="row">
+            <div class="col-xl-12">
+                <div class=" text-center">
+                    <!--Nav Button  -->
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link" href="{% url 'product' %}" >TẤT CẢ</a>
+                            <a class="nav-item nav-link" href="{% url 'orient' %}">ORIENT</a>
+                            <a class="nav-item nav-link" href="{% url 'citizen' %}">CITIZEN</a>
+                            <a class="nav-item nav-link" href="{% url 'candino' %}">CANDINO</a>
+                            <a class="nav-item nav-link" href="{% url 'daniel' %}">DANIEL WELLINGTON</a>
+                            <a class="nav-item nav-link" href="{% url 'casio' %}">CASIO</a>
+                            <a class="nav-item nav-link" href="{% url 'nam' %}">ĐỒNG HỒ NAM</a>
+                            <a class="nav-item nav-link" href="{% url 'nu' %}">ĐỒNG HỒ NỮ</a>
+                        </div>
+                    </nav>
+                    <!--End Nav Button  -->
+                </div>
+            </div>
+        </div>
+        {% block change %}
+        <div class="row">
+            <!-- Nav Card -->
+            <div class="tab-content" id="nav-tabContent">
+                <!-- card one -->
+                <div class="tab-pane fade show active" id="nav-Sofa" role="tabpanel" aria-labelledby="nav-Sofa-tab">
+                    <div class="row">
+                        {% for item in product %}
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="single-new-arrival mb-50 text-center">
+                                <div class="popular-img">
+                                    {% for a in item.anh_set.all %}
+                                    {% if a.LoaiAnh == 0 %}
+                                    <img src="{{ a.imageURL }}" alt="">
+                                    {% endif %}
+                                    {% endfor %}
+                                </div>
+                                <div class="popular-caption">
+                                    <h3><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h3>
+                                    <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+
+                                </div>
+                                <div>
+                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+        {% endblock %}
+
+                <!-- End Nav Card -->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
