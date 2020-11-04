@@ -1,0 +1,75 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area ">
+    <div class="slider-active">
+        <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center"
+             style="background-image : url({% static 'img/contact_user.jpg' %}) !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8 col-md-8">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="fadeInUp" data-delay=".4s">Sự Kiện</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'contact' %}">Sự Kiện</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="{{ sukien.Anh.url }}" alt="">
+                    </div>
+                    <div class="blog_details">
+                        <h2 style="color: #2d2d2d;">{{ sukien.TieuDe }}
+                        </h2>
+                        <p class="excert">
+                            {{ sukien.MoTa }}
+                        </p>
+                        <b>Những sản phẩm được giảm giá</b>
+                        <div class="new-arrival new-arrival2">
+                            <div class="container">
+                                <div class="row">
+                                    {% for item in sanpham %}
+                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                        <div class="single-new-arrival mb-50 text-center wow fadeInUp"
+                                             data-wow-duration="1s"
+                                             data-wow-delay=".1s">
+                                            <div class="popular-img">
+                                                {% for a in item.anh_set.all %}
+                                                {% if a.LoaiAnh == 0 %}
+                                                <img src="{{ a.imageURL }}" alt="">
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                            <div class="popular-caption">
+                                                <h3><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a>
+                                                </h3>
+                                                <strike>{{ item.Gia }}(VNĐ)</strike>
+                                                <br>
+                                                <span><b>{{ item.Gia_Giam }}(VNĐ)</b></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

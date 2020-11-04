@@ -1,3 +1,5 @@
+from django.db.models.functions import Extract
+
 from sanpham.models import SanPham
 from user.models import CustomerUser
 from donhang.models import ChiTietDon
@@ -52,8 +54,13 @@ def themchitiet(id,id_don):
                                   SoLuong = item.SoLuong)
 
 
-def tong():
-    chitiet = ChiTietDon.objects.all()
-    tong = sum([item.SoLuong for item in chitiet])
 
-    return tong
+def doanhthuthang(thang):
+    tthang = 0
+    months = DonHang.objects.all()
+    for item in months:
+        if item.NgayDat.month == thang:
+            for it in item.chitietdon_set.all():
+                tthang = tthang + it.SanPham.Gia * it.SoLuong
+
+    return tthang

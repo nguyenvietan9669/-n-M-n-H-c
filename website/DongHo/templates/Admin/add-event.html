@@ -1,0 +1,32 @@
+{% extends 'Admin/trangchu.html' %}
+{% block content %}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+       <label><h1 style="color:orange">Thêm Sản Phẩm Khuyến Mãi</h1></label>
+         <div class="card-body" style="width:400px">
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input style="width:30px;" type="number" name="event" value="{{ sukien.id }}">
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="product">
+                        {% for item in sanpham %}
+                        <option value="{{ item.id }}" selected>{{ item.TenSanPham }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input style="width:50px;" type="number" name="discount"> <b>%</b>
+                </div>
+                <div class="form-group">
+                    <input class="btn btn-success" type="submit" value="Thêm">
+                </div>
+
+            </form>
+        </div>
+
+
+    </div>
+</div>
+{% endblock %}

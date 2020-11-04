@@ -6,8 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
-    <mimeMap fileExtension=".appcache" mimeType="text/cache-manifest" />
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'home/img/favicon.ico' %}">
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/logo_watch.png' %}">
     <script type="text/javascript">
             var user = '{{request.user}}'
             function getToken(name) {
@@ -56,7 +55,7 @@
         <div class="preloader-inner position-relative">
             <div class="preloader-circle"></div>
             <div class="preloader-img pere-text">
-                <img src="{% static 'home/img/logom/loder.png'%}" alt="">
+                <img src="{% static 'img/logo_watch.png'%}" alt="">
             </div>
         </div>
     </div>
@@ -71,7 +70,7 @@
                     <div class="header-left d-flex align-items-center">
                         <!-- Logo -->
                         <div class="logo">
-                            <a href=""><img src="{% static 'home/img/logom/logo.png'%}" alt=""></a>
+                            <a href="{% url 'index' %}"><img src="{% static 'img/logo-main.png'%}" alt=""></a>
                         </div>
                         <!-- Logo-2 -->
                         <div class="logo2">

@@ -36,7 +36,7 @@
             <ul class="vertical-nav-menu">
                 <li class="app-sidebar__heading">Hệ Thống</li>
                 <li>
-                    <a href="{% url 'admin' %}" class="mm-active">
+                    <a href="{% url 'admin' %}" >
                        <img style="width:25px" src="{% static 'img/system.png' %}">
                         Super Watch
                     </a>
@@ -75,17 +75,9 @@
                 </li>
                 <li class="app-sidebar__heading">Doanh Thu</li>
                 <li>
-                    <a href="charts-chartjs.html">
-                        <i class="metismenu-icon pe-7s-graph2">
-                        </i>Theo Tháng
-                    </a>
-                    <a href="charts-chartjs.html">
-                        <i class="metismenu-icon pe-7s-graph2">
-                        </i>Theo Quý
-                    </a>
-                    <a href="charts-chartjs.html">
-                        <i class="metismenu-icon pe-7s-graph2">
-                        </i>Theo Năm
+                    <a href="{% url 'chartamin' %}">
+                        <img style="width:25px" src="{% static 'img/calendar.png' %}">
+                        Theo Năm
                     </a>
                 </li>
             </ul>

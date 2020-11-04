@@ -1,6 +1,7 @@
 import random
 
-from django.contrib.auth import authenticate,login,logout
+from django.contrib.auth import authenticate,login,logout,decorators
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect ,HttpResponseRedirect
 from django.views import View
 from django.http import JsonResponse
@@ -44,7 +45,7 @@ class HomeView(View):
         hot2 = sanphamhot(3,2)
         hot3 = sanphamhot(4,2)
         hot4 = sanphamhot(5,2)
-
+        sukien = SuKien.objects.order_by('-id').all()[:1]
         content = {
             'tongitem':tongitem,
             'thuonghieu':thuonghieu,
@@ -58,6 +59,7 @@ class HomeView(View):
             'hot2':hot2,
             'hot3':hot3,
             'hot4':hot4,
+            'sukien':sukien,
         }
 
         return render(request, 'cuahang/home.html',content)
@@ -320,6 +322,7 @@ def nu(request):
 #end-product---
 
 #giohang
+@decorators.login_required(login_url='/login/')
 def cart(request):
     if request.user.is_authenticated:
         user = request.user
@@ -333,6 +336,7 @@ def cart(request):
     return render(request,'giohang/cart.html',context)
 
 
+@decorators.login_required(login_url='/login/')
 def chekout(request,id):
     if request.user.is_authenticated:
         user = request.user
@@ -374,7 +378,8 @@ def updateItem(request):
     return JsonResponse('item was added', safe=False)
 
 
-class Profile(View):
+class Profile(LoginRequiredMixin,View):
+    login_url = '/login/'
     def get(self,request,id):
         Cus = CustomerUser.objects.get(pk=id)
         return render(request,'profile/profile.html',{'user': Cus})
@@ -451,13 +456,13 @@ def paymentComplete(request):
 
     return JsonResponse('Payment submitted..', safe=False)
 
-
+@decorators.login_required(login_url='/login/')
 def admin(request):
     if request.user.is_staff == False:
         return redirect('index')
     else:
         donhang = DonHang.objects.all()
-        user = CustomerUser.objects.all()
+        user = CustomerUser.objects.all()[:5]
         thuonghieu = ThuongHieu.objects.all()
         thanthiet = CustomerUser.objects.values('username','last_name','first_name','birthdate')\
         .annotate(dcount=Count('donhang')).order_by('-dcount').all()[:5]
@@ -473,7 +478,7 @@ def admin(request):
         return render(request,'Admin/trangchu.html',content)
 
 
-
+@decorators.login_required(login_url='/login/')
 def proadmin(request):
     if request.user.is_staff == False:
         return redirect('index')
@@ -485,6 +490,8 @@ def proadmin(request):
         context = {"sanpham":sanpham}
         return render(request,'Admin/admin-product.html',context)
 
+
+@decorators.login_required(login_url='/login/')
 def accadmin(request):
     if request.user.is_staff == False:
         return redirect('index')
@@ -497,6 +504,7 @@ def accadmin(request):
         return render(request,'Admin/admin-account.html',context)
 
 
+@decorators.login_required(login_url='/login/')
 def eventadmin(request):
     if request.user.is_staff == False:
         return redirect('index')
@@ -509,6 +517,60 @@ def eventadmin(request):
         return render(request,'Admin/admin-event.html',context)
 
 
+def eventdetail(request,id):
+    sanpham = []
+    sukien = SuKien.objects.get(pk = id)
+    detail = sukien.chitiet_sukien_set.all()
+    for item in detail:
+        pro = SanPham.objects.get(pk = item.SanPham.id)
+        sanpham.append(pro)
+    return render(request,'cuahang/event.html',{"sanpham":sanpham,"sukien":sukien})
+
+
+@decorators.login_required(login_url='/login/')
+def addevent(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        if request.method == 'POST':
+            ev = request.POST['event']
+            pro = request.POST['product']
+            dis = request.POST['discount']
+            event = SuKien.objects.get(pk= ev)
+            product = SanPham.objects.get(pk= pro)
+            chitiet = ChiTiet_Sukien.objects.create(SuKien= event,SanPham = product,Giam = dis)
+            chitiet.save()
+            sp = SanPham.objects.get(pk = pro)
+            sp.SanPham_GiamGia = True
+            sp.Gia_Giam = sp.Gia - sp.Gia * int(dis)/100
+            sp.save()
+            return redirect(eventadmin)
+        sukien = SuKien.objects.get(pk = id)
+        sanpham = SanPham.objects.all()
+        content={"sukien":sukien,'sanpham':sanpham}
+        return render(request,'Admin/add-event.html',content)
+
+
+@decorators.login_required(login_url='/login/')
+def deletevent(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        sukien = SuKien.objects.get(pk= id)
+        if request.method == "POST":
+            chitiet = sukien.chitiet_sukien_set.all()
+            for item in chitiet:
+                pro = SanPham.objects.get(pk = item.SanPham.id)
+                pro.SanPham_GiamGia = False
+                pro.save()
+            sukien.delete()
+            return redirect(eventadmin)
+        content ={
+            'item':sukien
+        }
+        return render(request,'Admin/delete-event.html',content)
+
+@decorators.login_required(login_url='/login/')
 def orderadmin(request):
     if request.user.is_staff == False:
         return redirect('index')
@@ -521,6 +583,18 @@ def orderadmin(request):
         return render(request,'Admin/admin-order.html',context)
 
 
+@decorators.login_required(login_url='/login/')
+def orderedit(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        order = DonHang.objects.get(pk = id)
+        order.DaXuLy = True
+        order.save()
+        return redirect(orderadmin)
+
+
+@decorators.login_required(login_url='/login/')
 def contactadmin(request):
     if request.user.is_staff == False:
         return redirect('index')
@@ -531,3 +605,47 @@ def contactadmin(request):
         phanhoi = paginator.get_page(page)
         context = {"phanhoi":phanhoi}
         return render(request,'Admin/admin-contact.html',context)
+
+
+@decorators.login_required(login_url='/login/')
+def contactuser(request):
+    if request.method == 'POST':
+        noidung = request.POST["message"]
+        id = request.POST["user"]
+        user = CustomerUser.objects.get(id = id)
+        phananh = KetNoi(user= user,NoiDung = noidung)
+        phananh.save()
+        messages.success(request,'Chúng tôi đã ghi nhận phản ánh của bạn')
+        redirect('contact')
+    return render(request,'cuahang/contact.html')
+
+
+@decorators.login_required(login_url='/login/')
+def chart(request):
+    thang1 = doanhthuthang(1)
+    thang2 = doanhthuthang(2)
+    thang3 = doanhthuthang(3)
+    thang4 = doanhthuthang(4)
+    thang5 = doanhthuthang(5)
+    thang6 = doanhthuthang(6)
+    thang7 = doanhthuthang(7)
+    thang8 = doanhthuthang(8)
+    thang9 = doanhthuthang(9)
+    thang10 = doanhthuthang(10)
+    thang11 = doanhthuthang(11)
+    thang12 = doanhthuthang(12)
+    content = {
+        "thang1": thang1,
+        "thang2": thang2,
+        "thang3": thang3,
+        "thang4": thang4,
+        "thang5": thang5,
+        "thang6": thang6,
+        "thang7": thang7,
+        "thang8": thang8,
+        "thang9": thang9,
+        "thang10": thang10,
+        "thang11": thang11,
+        "thang12": thang12
+    }
+    return render(request,'Admin/google-chart.html',content)

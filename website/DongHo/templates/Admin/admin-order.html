@@ -4,7 +4,7 @@
     <div class="app-main__inner">
         <div class="col-lg-12">
             <div class="main-card mb-3 card">
-                <div class="card-body"><h5 class="card-title">Danh Sách Đơn Hàng
+                <div class="card-body"><h5 class="card-title">Danh Sách Đơn Hàng</h5>
                     <table class="mb-0 table table-striped">
                         <thead>
                         <tr>
@@ -16,11 +16,15 @@
                         </thead>
                         <tbody>
                         {% for item in donhang.object_list %}
+
                         <tr>
                             <th scope="row">{{ item.id }}</th>
                             <td>{{ item.user}}</td>
                             <td>{{ item.DaXuLy }}</td>
-                            <td><a href="http://127.0.0.1:8000/admin/user/customeruser/{{item.id}}/change/" class="btn btn-warning btn-xs" >Xử Lý</a>
+                            <td>
+                                {% if item.DaXuLy == False %}
+                                <a href="{% url 'orderedit' item.id %}" class="btn btn-warning btn-xs" >Xử Lý</a>
+                                {% endif %}
                             <a href="" class="btn btn-danger btn-xs" >Xóa</a></td>
                         </tr>
                         {% endfor %}

@@ -1,0 +1,58 @@
+{% extends 'Admin/trangchu.html' %}
+{% block content %}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <html>
+        <head>
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">
+      google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+      function drawStuff() {
+        var data = new google.visualization.arrayToDataTable([
+          ['Tháng ', 'Triệu'],
+          ['1', {{thang1}}],
+          ["2", {{thang2}}],
+          ["3", {{thang3}}],
+          ["4", {{thang4}}],
+          ["5", {{thang5}}],
+          ['6', {{thang6}}],
+          ['7', {{thang7}}],
+          ['8', {{thang8}}],
+          ['9', {{thang9}}],
+          ['10',{{thang10}}],
+          ['11',{{thang11}}],
+          ['12',{{thang12}}],
+        ]);
+
+        var options = {
+          width: 800,
+          legend: { position: 'none' },
+          chart: {
+            title: 'Doanh Thu Năm',
+            subtitle: 'Thông kê doanh thu của Năm' },
+          axes: {
+            x: {
+              0: { side: 'top', label: 'Đơn vị : VNĐ'} // Top x-axis.
+            }
+          },
+          bar: { groupWidth: "90%" }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+        // Convert the Classic options to Material options.
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+
+
+            </script>
+        </head>
+
+        <body>
+        <div id="top_x_div" style="width: 600px; height: 500px; padding: 20px;"></div>
+        </body>
+        </html>
+    </div>
+</div>
+{% endblock %}

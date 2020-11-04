@@ -1,0 +1,58 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area ">
+    <div class="slider-active">
+        <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center"
+             style="background-image : url({% static 'img/contact_user.jpg' %}) !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8 col-md-8">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="fadeInUp" data-delay=".4s">Phản Ánh</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'contact' %}">Phản Ánh</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding-top:50px" class="container">
+    <div class="row">
+        <div class="col-12">
+            <h2 class="contact-title">Gửi phản hồi của bạn đến chúng tôi</h2>
+        </div>
+        <div class="col-lg-8">
+            <form action="{% url 'contact' %}" method="post">
+                {% csrf_token %}
+                {% if messages %}
+                {% for message in messages %}
+                <b style="color:blue">{{ message }}</b>
+                {% endfor %}
+                {% endif %}
+                <p></p>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <input type="hidden" name="user" value="{{ request.user.id }}">
+                            <textarea class="form-control w-100" name="message" id="message" cols="30" rows="9"
+                                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                                      placeholder=" Nhập văn bản..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mt-3">
+                    <button type="submit" class="button button-contactForm boxed-btn">Gửi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

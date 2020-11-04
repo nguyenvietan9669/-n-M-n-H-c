@@ -54,7 +54,7 @@
                                     {% endfor %}
                                 </div>
                                 <div class="popular-caption">
-                                    <h2><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <h2 ><a style="color:black" href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
                                     <br>
                                     <span>{{ item.Gia|floatformat:0 }}(VND)</span>
 
