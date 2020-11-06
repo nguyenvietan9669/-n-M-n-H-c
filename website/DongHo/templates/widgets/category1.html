@@ -11,7 +11,7 @@
 
         <h2>{{ item.TenThuongHieu }}</h2>
         <p>{{ item.MoTa }}</p>
-        <a href="#" class="btn">Tìm Hiểu Thêm</a>
+        <a href="{% url 'orient-detail' %}" class="btn">Tìm Hiểu Thêm</a>
         {% endif %}
         {% endfor %}
     </div>

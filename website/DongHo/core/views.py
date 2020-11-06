@@ -229,6 +229,66 @@ def orient(request):
     return render(request, 'category/Orient.html', content)
 
 
+def orientdetail(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items = user.giohang_set.all()
+        tongitem = user.get_cart_items
+    else:
+        items = []
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
+    context = {'items': items, 'donhang': user, 'tongitem': tongitem}
+    return render(request,'category/BOrient.html',context)
+
+def citizendetail(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items = user.giohang_set.all()
+        tongitem = user.get_cart_items
+    else:
+        items = []
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
+    context = {'items': items, 'donhang': user, 'tongitem': tongitem}
+    return render(request,'category/BCitizen.html',context)
+
+def candinodetail(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items = user.giohang_set.all()
+        tongitem = user.get_cart_items
+    else:
+        items = []
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
+    context = {'items': items, 'donhang': user, 'tongitem': tongitem}
+    return render(request,'category/BCandino.html',context)
+
+def danieldetail(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items = user.giohang_set.all()
+        tongitem = user.get_cart_items
+    else:
+        items = []
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
+    context = {'items': items, 'donhang': user, 'tongitem': tongitem}
+    return render(request,'category/BDaniel.html',context)
+
+def casiodetail(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items = user.giohang_set.all()
+        tongitem = user.get_cart_items
+    else:
+        items = []
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
+    context = {'items': items, 'donhang': user, 'tongitem': tongitem}
+    return render(request,'category/BCasio.html',context)
+
 def citizen(request):
     if request.user.is_authenticated:
         user = request.user
@@ -381,8 +441,17 @@ def updateItem(request):
 class Profile(LoginRequiredMixin,View):
     login_url = '/login/'
     def get(self,request,id):
+        if request.user.is_authenticated:
+            user = request.user
+            items = user.giohang_set.all()
+            tongitem = user.get_cart_items
+        else:
+            items = []
+            user = {'get_cart_total': 0, 'get_cart_items': 0}
+            tongitem = user['get_cart_items']
         Cus = CustomerUser.objects.get(pk=id)
-        return render(request,'profile/profile.html',{'user': Cus})
+        context = {'items': items, 'donhang': user, 'tongitem': tongitem,'user': Cus}
+        return render(request,'profile/profile.html',context)
 
 
 
@@ -570,6 +639,38 @@ def deletevent(request,id):
         }
         return render(request,'Admin/delete-event.html',content)
 
+
+@decorators.login_required(login_url='/login/')
+def deleteproduct(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        pro = SanPham.objects.get(pk = id)
+        if request.method =="POST":
+            pro.delete()
+            return redirect(proadmin)
+        content = {
+            'item': pro
+        }
+        return render(request, 'Admin/delete-product.html', content)
+
+
+@decorators.login_required(login_url='/login/')
+def deleteaccount(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        acc = CustomerUser.objects.get(pk=id)
+        if request.method == "POST":
+            acc.delete()
+            return redirect(accadmin)
+        content = {
+            'item': acc
+        }
+        return render(request, 'Admin/delete-account.html', content)
+
+
+
 @decorators.login_required(login_url='/login/')
 def orderadmin(request):
     if request.user.is_staff == False:
@@ -581,6 +682,22 @@ def orderadmin(request):
         donhang = paginator.get_page(page)
         context = {"donhang":donhang}
         return render(request,'Admin/admin-order.html',context)
+
+
+
+@decorators.login_required(login_url='/login/')
+def deleteorder(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        order = DonHang.objects.get(pk = id)
+        if request.method == "POST":
+            order.delete()
+            return redirect(orderadmin)
+        content = {
+            'item': order
+        }
+        return render(request, 'Admin/delete-order.html', content)
 
 
 @decorators.login_required(login_url='/login/')
@@ -609,6 +726,15 @@ def contactadmin(request):
 
 @decorators.login_required(login_url='/login/')
 def contactuser(request):
+    if request.user.is_authenticated:
+        user = request.user
+        items = user.giohang_set.all()
+        tongitem = user.get_cart_items
+    else:
+        items = []
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
+    context = {'items': items, 'donhang': user, 'tongitem': tongitem}
     if request.method == 'POST':
         noidung = request.POST["message"]
         id = request.POST["user"]
@@ -617,7 +743,16 @@ def contactuser(request):
         phananh.save()
         messages.success(request,'Chúng tôi đã ghi nhận phản ánh của bạn')
         redirect('contact')
-    return render(request,'cuahang/contact.html')
+    return render(request,'cuahang/contact.html',context)
+
+
+@decorators.login_required(login_url='/login/')
+def contactdetail(request,id):
+    if request.user.is_staff == False:
+        return redirect('index')
+    else:
+        phanhoi = KetNoi.objects.get(pk = id)
+        return render(request,'Admin/contact-detail.html',{"phanhoi":phanhoi})
 
 
 @decorators.login_required(login_url='/login/')

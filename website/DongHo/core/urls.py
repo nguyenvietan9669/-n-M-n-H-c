@@ -16,6 +16,14 @@ urlpatterns = [
     path('update_item/',updateItem ,name = 'update_item'),
     path('checkout/<int:id>/',chekout,name = 'checkout'),
 
+
+    path('orient-detail/',orientdetail,name = 'orient-detail'),
+    path('citizen-detail/',citizendetail,name = 'citizen-detail'),
+    path('cadino-detail/',candinodetail,name = 'candino-detail'),
+    path('daniel-detail/',danieldetail,name = 'daniel-detail'),
+    path('casio-detail/',casiodetail,name = 'casio-detail'),
+
+
     path('index-admin/',admin,name='admin'),
     path('product-admin/',proadmin,name='proadmin'),
     path('account-admin/',accadmin,name='accamin'),
@@ -23,10 +31,14 @@ urlpatterns = [
     path('event/<int:id>',eventdetail,name='eventdetail'),
     path('addevent/<int:id>',addevent,name='addevent'),
     path('event-delete/<int:id>',deletevent,name='deletevent'),
+    path('product-delete/<int:id>',deleteproduct,name='deletepro'),
+    path('account-delete/<int:id>',deleteaccount,name='deleteaccount'),
+    path('order-delete/<int:id>',deleteorder,name='deleleorder'),
     path('order-admin/',orderadmin,name='orderamin'),
     path('order-edit/<int:id>',orderedit,name='orderedit'),
     path('chart-admin/',chart,name='chartamin'),
     path('contact-admin/',contactadmin,name='contactamin'),
+    path('contact-detail<int:id>/',contactdetail,name='contactdetail'),
     path('complete/',paymentComplete,name='complete'),
     path('product/',product,name='product'),
     path('contact/',contactuser,name='contact'),

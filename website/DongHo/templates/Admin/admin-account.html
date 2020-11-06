@@ -25,7 +25,7 @@
                             <td>{{ item.username }}</td>
                             <td>{{ item.email }}</td>
                             <td><a href="http://127.0.0.1:8000/admin/user/customeruser/{{item.id}}/change/" class="btn btn-warning btn-xs" >Sửa</a>
-                            <a href="" class="btn btn-danger btn-xs" >Xóa</a></td>
+                            <a href="{% url 'deleteaccount' item.id %}" class="btn btn-danger btn-xs" >Xóa</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>

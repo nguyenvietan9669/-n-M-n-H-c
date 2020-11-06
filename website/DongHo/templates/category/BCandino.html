@@ -1,0 +1,70 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area ">
+    <div class="slider-active">
+        <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center"
+             style="background-image : url({% static 'img/contact_user.jpg' %}) !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8 col-md-8">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="fadeInUp" data-delay=".4s">CANDINO</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'candino-detail' %}">CANDIO</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="{% static 'img/4-bo-suu-tap-moi-candino-titanium-watches-gioi-thieu-nam-2016.jpg' %}" alt="">
+                    </div>
+                    <div class="blog_details">
+                        <h2 style="color: #2d2d2d;">Lịch Sử Của Đồng Hồ CANDINO
+                        </h2>
+                        <p class="excert">
+                          Năm 1956, nhà máy sản xuất đồng hồ với quy mô lớn đầu tiên mang thương hiệu CANDINO đã ra đời
+                            tại Herbetswil. Năm 1971, dây chuyền lắp ráp đồng hồ tự động của CANDINO ra đời với quy mô
+                            lớn nhất Thụy Sỹ lúc bấy giờ.
+                        </p>
+                        <p>
+                          Năm 1976, CANDINO trình làng chiếc đồng hồ kỹ thuật số điện tử đầu tiên của hãng dành cho tất
+                            cả các khách hàng trên toàn thế giới. Sau đó vài tháng, vào năm 1977, CANDINO ra mắt mẫu
+                            đồng hồ ứng dụng kim loại cứng đầu tiên. Thành công nối tiếp thành công, cái tên CANDINO
+                            lên như diều gặp gió trong thị trường đồng hồ cao cấp.
+                        </p>
+                        <p>
+                           Năm 1980, CANDINO khánh thành thêm một dây chuyền lắp ráp tối tân cho các dòng đồng hồ phẳng,
+                            tạo nên một bước ngoặt lớn trong lịch sử thương hiệu đồng hồ CANDINO, đánh dấu việc chính thức
+                            bước vào thị trường đồng hồ siêu mỏng của nhà sản xuất này.
+                        </p>
+                        <p>
+                            Từ năm 1982, người ta bắt đầu thấy cái tên CANDINO có mặt tại các triển lãm đồng hồ lớn trên
+                            thế giới như Basel và SIHH – vốn chỉ dành cho những thương hiệu đồng hồ cao cấp. Và kể từ thời
+                            điểm đó, những triển lãm đồng hồ danh giá này chưa bao giờ vắng bóng thương hiệu đồng hồ CANDINO.
+                        </p>
+                        <p>
+                            1983 được coi là một năm nhiều thành công của thương hiệu này khi họ cho ra đời mẫu đồng hồ hiển thị lịch âm dựa theo hoạt động của mặt trăng, đặc biệt phù hợp với văn hóa của các nước phương Đông. Đây cũng được xem là dấu mốc chứng tỏ tầm nhìn của thương hiệu này đã nhắm về phía các nước khu vực châu Á.
+                        </p>
+                        <p>
+                            Năm 1986, CANDINO mua lại và sáp nhập các tòa nhà Bulova cũ ở Biel-Bienne. Tại đây, họ lại tiếp tục phát triển và cho ra đời những phiên bản đồng hồ hiển thị tuần trăng và các chỉ số cung hoàng đạo, dựa trên công nghệ thạch anh cao cấp và ưu việt hơn. Ngay trong năm tiếp theo, thương hiệu này ra mắt bộ sưu tập Royal Gold tại Basel 87. Đây là những phiên bản đồng hồ được gắn la bàn. Chiếc đồng hồ nhỏ nhất thế giới chạy bằng cơ tích hợp máy đo độ cao dành cho nam được hãng trình làng vào năm 1989 trong sự chờ đón của những người hâm mộ thương hiệu CANDINO và những nhà sưu tầm đồng hồ trên toàn thế giới.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

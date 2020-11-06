@@ -1,0 +1,76 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area ">
+    <div class="slider-active">
+        <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center"
+             style="background-image : url({% static 'img/contact_user.jpg' %}) !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8 col-md-8">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="fadeInUp" data-delay=".4s">ORIENT</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'orient-detail' %}">ORIENT</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="{% static 'img/dong-ho-orient-fag00003w0-caballero.jpg' %}" alt="">
+                    </div>
+                    <div class="blog_details">
+                        <h2 style="color: #2d2d2d;">Lịch Sử Của Đồng Hồ ORIENT
+                        </h2>
+                        <p class="excert">
+                            Nguồn gốc của công ty Orient Watch Company bắt đầu từ năm 1901 khi Shogoro Yoshida
+                            mở một cửa tiệm bán buôn có tên là "Cửa hàng Đồng hồ Yoshida" tại Ueno, Taito, Tokyo, Nhật Bản.
+                            Cửa hàng Đồng hồ Yoshida đã trở nên rất thành công với việc bán các mẫu đồng hồ quả lắc để túi.
+                            Đến năm 1912, Yoshida mở rộng hoạt động kinh doanh và bắt đầu sản xuất khung đồng hồ
+                            đeo tay bằng vàng.
+                            Năm 1920, Toyo Tokei Manufacturing được thành lập,
+                            khởi đầu với việc chuyên sản xuất đồng hồ để bàn và máy đo.
+                            Cho đến tận năm 1934, Toyo Tokei Manufacturing mới bắt đầu sản xuất các mẫu đồng hồ đeo tay.
+                            Vào năm 1936, Nhà máy Hino được xây dựng tại Hino, Tokyo, Nhật Bản.
+                            Trong nhiều năm, việc sản xuất các sản phẩm của Toyo Tokei Manufacturing tại Nhà máy Hino
+                            đã tăng lên rất nhanh. Tuy nhiên, do bị ảnh hưởng bởi nên kinh tế đói nghèo của
+                            Nhật Bản sau Thế chiến thứ 2, công ty đã phải đóng cửa vào năm 1949.
+                        </p>
+                        <p>
+                            Sau khi Toyo Tokei Manufacturing phải đóng cửa, Yoshida đã quay trở lại một công ty sản xuất
+                            đồng hồ đeo tay mới vào năm 1950, với tên gọi là Công ty TNHH Tama Keiki. Công ty tiếp tục
+                            sản xuất các mẫu đồng hồ đeo tay tại Nhà máy Hino. Chỉ một năm sau, vào năm 1951,
+                            Công ty TNHH Tama Keiki đã đổi tên thành Công ty TNHH Đồng hồ Orient (Orient Watch Co., Ltd.),
+                            và trong cùng năm đó, mẫu đồng hồ Orient Star được ra mắt. Orient Watch sau đó đã mở rộng
+                            tầm ảnh hưởng ra bên ngoài nước nhật sau bản ghi nhớ thỏa thuận thương mại với Trung Quốc vào năm 1955.
+                            Phiên bản đồng hồ Royal Orient được bán ra vào năm 1960. Một số mẫu đồng hồ rất quan trọng khác
+                            trong lịch sử của công ty bao gồm "Dynamic" vào năm 1956, "Grand Prix 100" vào năm 1964,
+                            "Fineness" (chiếc đồng hồ đeo tay tự động mỏng nhất thế giới vào lúc đó có chức năng xem lịch)
+                            vào năm 1967 và "Tenbeat" vào năm 1970
+                        </p>
+                        <p>
+                            Năm 2003, Trung tâm Kỹ thuật Orient (OTC) được thành lập và việc lắp ráp các mẫu đồng hồ
+                            xa xỉ bắt đầu được thực hiện tại Ugo, Ogachi, Akita, Nhật Bản. Năm 2004, bộ máy Calibre 88700
+                            của hãng được giới thiệu là có độ chính xác cao đã được bán thông qua dòng đồng hồ Royal Orient.
+                            Năm 2005, bộ sưu tập Orient Star Retro-Future được ra mắt. Năm 2010, Công ty TNHH Đồng hồ
+                            Orient đã kỷ niệm 60 năm thành lập với một phiên bản giới hạn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

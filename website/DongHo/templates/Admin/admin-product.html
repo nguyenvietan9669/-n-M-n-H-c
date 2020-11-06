@@ -24,7 +24,7 @@
                             <td>{{ item.Gia }}</td>
                             <td>{{ item.ThuongHieu }}</td>
                             <td><a href="http://127.0.0.1:8000/admin/sanpham/sanpham/{{item.id}}/change/" class="btn btn-warning btn-xs" >Sửa</a>
-                            <a href="" class="btn btn-danger btn-xs" >Xóa</a></td>
+                            <a href="{% url 'deletepro' item.id %}" class="btn btn-danger btn-xs" >Xóa</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>

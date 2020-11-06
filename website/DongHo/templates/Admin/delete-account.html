@@ -1,0 +1,14 @@
+{% extends 'Admin/trangchu.html' %}
+{% block content %}
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="card-body">
+            <form method="post" action="{% url 'deleteaccount' item.id %}">
+                {% csrf_token %}
+                <h1>Bạn có thực sự muốn xóa {{ item.username }}</h1>
+                <input class="btn btn-danger" type="submit" value="Xóa">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

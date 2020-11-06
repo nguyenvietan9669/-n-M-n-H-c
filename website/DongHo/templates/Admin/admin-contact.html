@@ -1,4 +1,5 @@
 {% extends 'Admin/trangchu.html' %}
+{% load static %}
 {% block content %}
 <div class="app-main__outer">
     <div class="app-main__inner">
@@ -18,12 +19,15 @@
                         <tr>
                             <th scope="row">{{ item.id }}</th>
                             <td>{{ item.user}}</td>
-                            <td><a href="http://127.0.0.1:8000/admin/user/customeruser/{{item.id}}/change/" class="btn btn-warning btn-xs" >Xem</a>
+                            <td>
+                                <a href="{% url 'contactdetail' item.id %}" class="btn btn-warning btn-xs">Xem</a>
+                            </td>
                         </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
+
                 <div style="margin-left: 350px;">
                     {% if phanhoi.has_previous %}
                     <a style="margin:0 0.1em;

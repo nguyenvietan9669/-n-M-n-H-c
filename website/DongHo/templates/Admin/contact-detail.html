@@ -1,0 +1,22 @@
+{% extends 'Admin/trangchu.html' %}
+{% load static %}
+{% block content %}
+<link href="{% static 'admin/contact/main.css' %}">
+<div class="app-main__outer">
+    <div class="app-main__inner">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 style="color:orange;">Chi Tiết Phản Hồi</h1>
+            </div>
+            <div class="modal-body">
+                <span><b>Người viết :</b> {{ phanhoi.user }}</span>
+                <p></p>
+                <p><b>Nội dung :</b> {{ phanhoi.NoiDung }}</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{% url 'contactamin' %}">Quay lại</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

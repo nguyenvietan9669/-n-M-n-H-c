@@ -1,0 +1,67 @@
+{% extends 'cuahang/index.html' %}
+{% load static %}
+{% block content %}
+<div class="slider-area ">
+    <div class="slider-active">
+        <div class="single-slider hero-overly2  slider-height2 d-flex align-items-center"
+             style="background-image : url({% static 'img/contact_user.jpg' %}) !important">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-8 col-md-8">
+                        <div class="hero__caption hero__caption2">
+                            <h1 data-animation="fadeInUp" data-delay=".4s">DANIEL</h1>
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="{% url 'index' %}">Trang Chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="{% url 'daniel-detail' %}">DANIEL</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="blog_area single-post-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 posts-list">
+                <div class="single-post">
+                    <div class="feature-img">
+                        <img class="img-fluid" src="{% static 'img/DW00100163-1.jpg' %}" alt="">
+                    </div>
+                    <div class="blog_details">
+                        <h2 style="color: #2d2d2d;">Lịch Sử Của Đồng Hồ DANIEL WELLINGTON
+                        </h2>
+                        <p class="excert">
+                             Năm 2006, chàng trai trẻ Filip Tysander người Thụy Điển đến Australia với mục đích
+                            ban đầu chỉ để du lịch và khám phá. Một cơ duyên tình cờ hay định mệnh đã giúp ông
+                            gặp gỡ được Daniel Wellington. Thời điểm này, Daniel Wellington chỉ là một người
+                            bình thường, không phải doanh nhân cũng chẳng phải người chơi đồng hồ chuyên nghiệp.
+                            Cả 2 đều chung lý tưởng là thích đi bụi đó đây.
+                        </p>
+                        <p>
+                           Năm 2009, Ông cùng anh trai của mình mở một gian hàng trực tuyến trên eBay nhằm
+                            quảng bá rộng rãi hơn các sản phẩm dây vải Nato. Kết quả thu về rất khả quan nhưng
+                            điều mà Filip Tysander cứ cân nhắc mãi chính là người dùng sử dụng dây vải Nato
+                            (vốn là tâm huyết của ông) đi kết hợp với các sản phẩm Rolex nhái, rẻ tiền thế kia.
+                        </p>
+                        <p>
+                            Với sự thành công nhanh chóng của Daniel Wellington khiến nhiều người nghĩ nó là
+                            một chiến dịch Marketing xuất sắc. Đây là một nhận định đúng nhưng không đủ bởi
+                            đằng sau đó là những câu chuyện về chất lượng, thiết kế và ý nghĩa truyền tải của
+                            ông chủ điều hành Filip Tysander người Thụy Điển.
+
+                             Vậy chắc chắn bạn đã biết đồng hồ dw của nước nào rồi phải không? Đó chính là
+                            Thụy Điển – nơi khởi nguồn của những ý tưởng “điên rồ” và giờ đây, nó chính là
+                            niềm tự hào của người Thụy Điển khi mà nhờ có DW, các tín đồ thời trang trên
+                            thế giới bắt đầu quan tâm nhiều hơn đến lịch sử, đất nước và con người tại đây.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
