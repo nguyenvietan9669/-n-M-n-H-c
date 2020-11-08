@@ -64,8 +64,15 @@
                             <td>
                                 <p class="quantity">{{item.SoLuong}}</p>
                                 <div class="quantity">
-                                    <img data-product="{{item.SanPham.id}}" data-action="add" class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}">
-                                    <img data-product="{{item.SanPham.id}}" data-action="remove" class="chg-quantity update-cart" src="{% static 'img/arrow-down.png'%}">
+                                    {% if item.SanPham.SoLuongHang == item.SoLuong %}
+                                    <img data-product="{{item.SanPham.id}}" data-action="remove"
+                                         class="chg-quantity update-cart" src="{% static 'img/arrow-down.png'%}">
+                                    {% else %}
+                                    <img data-product="{{item.SanPham.id}}" data-action="add"
+                                         class="chg-quantity update-cart" src="{% static  'img/arrow-up.png' %}">
+                                    <img data-product="{{item.SanPham.id}}" data-action="remove"
+                                         class="chg-quantity update-cart" src="{% static 'img/arrow-down.png'%}">
+                                    {% endif %}
                                 </div>
                             </td>
                             <td>

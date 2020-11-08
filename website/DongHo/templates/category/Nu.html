@@ -14,54 +14,69 @@
             </div>
             <div class="popular-caption">
                 <h3><a href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h3>
+                {% if item.SoLuongHang == 0 %}
+                <p>Hết Hàng</p>
+                {% else %}
+                {% if item.SanPham_GiamGia == True %}
+                <strike>{{ item.Gia }}(VNĐ)</strike>
+                <br>
+                <span><b>{{ item.Gia_Giam }}(VNĐ)</b></span>
+                {% else %}
                 <span>{{ item.Gia|floatformat:0 }}(VND)</span>
-
+                {% endif %}
+                {% endif %}
             </div>
             <div>
+                {% if item.SoLuongHang == 0 %}
+                <button disabled data-product="{{ item.id }}" data-action="add"
+                        class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                </button>
+                {% else %}
                 <button data-product="{{ item.id }}" data-action="add"
                         class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
                 </button>
+                {% endif %}
             </div>
         </div>
     </div>
     {% endfor %}
     <div style="margin-left: 500px;">
-                            {% if product.has_previous %}
-                            <a style="margin:0 0.1em;
+        {% if product.has_previous %}
+        <a style="margin:0 0.1em;
                                     display: inline-block;
                                     padding:0.1em 0.5em;
                                     color: #B9B9B9;
                                     font-size : 1.3em;" href="?page=1"><p> << </p></a>
-                                <a style=" margin:0 0.1em;
+        <a style=" margin:0 0.1em;
                                     display: inline-block;
                                     padding:0.1em 0.5em;
                                     color: #B9B9B9;
-                                    font-size : 1.3em;" href="?page={{product.previous_page_number}}"><p> < </p> </a>
-                            {% endif %}
-                            {% for num in product.paginator.page_range %}
-                                {% if product.number == num %}
-                                    <Strong>{{num}}</Strong>
-                                {% elif num > product.number|add:'-3' and  num < product.number|add:'3' %}
-                                    <a style=" margin:0 0.1em;
+                                    font-size : 1.3em;" href="?page={{product.previous_page_number}}"><p> < </p></a>
+        {% endif %}
+        {% for num in product.paginator.page_range %}
+        {% if product.number == num %}
+        <Strong>{{num}}</Strong>
+        {% elif num > product.number|add:'-3' and num < product.number|add:'3' %}
+        <a style=" margin:0 0.1em;
                                     display: inline-block;
                                     padding:0.1em 0.5em;
                                     color: orange;
-                                    "href="?page={{num}}">{{ num }}</a>
-                                {% endif %}
-                            {% endfor %}
-                            {% if product.has_next %}
-                                <a style=" margin:0 0.1em;
+                                    " href="?page={{num}}">{{ num }}</a>
+        {% endif %}
+        {% endfor %}
+        {% if product.has_next %}
+        <a style=" margin:0 0.1em;
                                     display: inline-block;
                                     padding:0.1em 0.5em;
                                     color: #B9B9B9;
-                                    font-size : 1.3em;" href="?page={{product.next_page_number}}"><p> > </p> </a>
-                                <a style=" margin:0 0.1em;
+                                    font-size : 1.3em;" href="?page={{product.next_page_number}}"><p> > </p></a>
+        <a style=" margin:0 0.1em;
                                         display: inline-block;
                                         padding:0.1em 0.5em;
                                         color: #B9B9B9;
-                                        font-size : 1.3em;" href="?page={{product.paginator.num_pages}}"><p> >> </p> </a>
-                            {% endif %}
-                        </div>
+                                        font-size : 1.3em;" href="?page={{product.paginator.num_pages}}"><p> >> </p></a>
+        {% endif %}
+    </div>
 </div>
 </div>
 {% endblock %}

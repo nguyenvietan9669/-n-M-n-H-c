@@ -32,8 +32,7 @@
                         </li>
                     </ul>
                     <p>
-                        Mill Oil is an innovative oil filled radiator with the most modern technology. If you are
-                        looking for something that can make your interior look awesome, and at the same time.
+                       Tặng 02 suất mua Dây đồng hồ giảm ngay 50%. (Không áp dụng KM khác)
                     </p>
                     <div class="card_area">
                         <div class="product_count d-inline-block">
@@ -42,7 +41,9 @@
                             <span class="number-increment"> + </span>
                         </div>
                         <div class="add_to_cart">
-                            <a href="#" class="btn">add to cart</a>
+                            <button data-product="{{ product.id }}" data-action="add"
+                                    class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                            </button>
                         </div>
                         <div class="social_icon">
                             <a href="#" class="fb"><i></i></a>
@@ -89,10 +90,10 @@
         <div class="container" style="padding-top : 50px">
             <h2 style="color:orange"> Bình Luận....</h2>
             <span> Số lượng : <b>{{binhluan.count}}</b></span>
-            <div class="comment_list" style="padding-top:10px">
-                <div class="review_item">
+            <div class="comment_list" >
+                <div class="review_item" style="padding-top:30px">
                     {% for item in binhluan %}
-                    <div class="box-element" style="padding-top:10px">
+                    <div class="box-element" style="margin:10px">
                         <div class="media">
                             <div class="d-flex">
                                 <img src="assets/img/gallery/review-1.png" alt=""/>
@@ -100,7 +101,7 @@
                             <div class="media-body">
                                 <strong>{{ item.user }} </strong>
                                 <a href="{% url 'delete-comment' item.id product.id%}" style="float:right"><img
-                                    style="width:20px" src="{% static 'img/delete-forever.png' %}"></a>
+                                        style="width:20px" src="{% static 'img/delete-forever.png' %}"></a>
                                 <h5>{{ item.Ngay }}</h5>
 
                             </div>
@@ -115,7 +116,8 @@
                         </div>
                         <div style="padding-top:10px">
                             <a href=""><img style="width:20px;" src="{% static 'img/thumb-up.png' %}"><b>Thích</b></a>
-                            <a href=""><img style="width:20px" src="{% static 'img/thumb-down.png' %}"><b>Không Thích</b></a>
+                            <a href=""><img style="width:20px" src="{% static 'img/thumb-down.png' %}"><b>Không
+                                Thích</b></a>
                         </div>
                     </div>
                     {% endfor %}

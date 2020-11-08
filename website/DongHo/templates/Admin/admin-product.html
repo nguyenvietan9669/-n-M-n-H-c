@@ -12,6 +12,7 @@
                             <th>ID</th>
                             <th>Tên Sản Phẩm</th>
                             <th>Giá</th>
+                            <th>Số Lượng</th>
                             <th>Thương Hiệu</th>
                             <th>Thao Tác</th>
                         </tr>
@@ -22,6 +23,7 @@
                             <th scope="row">{{ item.id }}</th>
                             <td>{{ item.TenSanPham }}</td>
                             <td>{{ item.Gia }}</td>
+                            <td>{{ item.SoLuongHang }}</td>
                             <td>{{ item.ThuongHieu }}</td>
                             <td><a href="http://127.0.0.1:8000/admin/sanpham/sanpham/{{item.id}}/change/" class="btn btn-warning btn-xs" >Sửa</a>
                             <a href="{% url 'deletepro' item.id %}" class="btn btn-danger btn-xs" >Xóa</a></td>

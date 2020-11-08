@@ -14,7 +14,6 @@ class DonHang(models.Model):
         return str(self.user)
 
 
-
 class GiaoHang(models.Model):
     TenNguoiNhan = models.CharField(default='',max_length=100)
     DiaChi = models.CharField(default='',max_length=100)

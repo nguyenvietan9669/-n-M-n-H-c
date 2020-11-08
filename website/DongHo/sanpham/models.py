@@ -54,6 +54,7 @@ class SanPham(models.Model):
     ThuongHieu = models.ForeignKey(ThuongHieu,on_delete=models.CASCADE)
     MoTa = models.TextField(default='')
     SanPham_GiamGia = models.BooleanField(default=False)
+    SoLuongHang = models.IntegerField(default=0)
     SanPham_Hot = models.BooleanField(default=False)
     Gia = models.IntegerField(default=0)
     Gia_Giam = models.IntegerField(default=0)

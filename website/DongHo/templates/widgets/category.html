@@ -42,7 +42,7 @@
             <div class="tab-content" id="nav-tabContent">
                 <!-- card one -->
                 <div class="tab-pane fade show active" id="nav-Sofa" role="tabpanel" aria-labelledby="nav-Sofa-tab">
-                     <div class="row">
+                    <div class="row">
                         {% for item in sanpham %}
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="single-new-arrival mb-50 text-center">
@@ -54,13 +54,31 @@
                                     {% endfor %}
                                 </div>
                                 <div class="popular-caption">
-                                    <h2 ><a style="color:black" href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a></h2>
+                                    <h2><a style="color:black" href="{% url 'product-detail' item.id %}">{{item.TenSanPham}}</a>
+                                    </h2>
+                                    {% if item.SoLuongHang == 0 %}
+                                    <p>Hết Hàng</p>
+                                    {% else %}
+                                    {% if item.SanPham_GiamGia == True %}
+                                    <strike>{{ item.Gia }}(VNĐ)</strike>
                                     <br>
+                                    <span><b>{{ item.Gia_Giam }}(VNĐ)</b></span>
+                                    {% else %}
                                     <span>{{ item.Gia|floatformat:0 }}(VND)</span>
+                                    {% endif %}
+                                    {% endif %}
 
                                 </div>
                                 <div>
-                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                    {% if item.SoLuongHang == 0 %}
+                                    <button disabled data-product="{{ item.id }}" data-action="add"
+                                            class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                                    </button>
+                                    {% else %}
+                                    <button data-product="{{ item.id }}" data-action="add"
+                                            class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                                    </button>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
@@ -69,7 +87,7 @@
                 </div>
                 <!-- Card two -->
                 <div class="tab-pane fade" id="nav-Table" role="tabpanel" aria-labelledby="nav-Table-tab">
-                     <div class="row">
+                    <div class="row">
                         {% for item in sanpham1 %}
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="single-new-arrival mb-50 text-center">
@@ -87,7 +105,9 @@
 
                                 </div>
                                 <div>
-                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                    <button data-product="{{ item.id }}" data-action="add"
+                                            class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -96,7 +116,7 @@
                 </div>
                 <!-- Card three -->
                 <div class="tab-pane fade" id="nav-Chair" role="tabpanel" aria-labelledby="nav-Chair-tab">
-                     <div class="row">
+                    <div class="row">
                         {% for item in sanpham2 %}
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="single-new-arrival mb-50 text-center">
@@ -114,7 +134,9 @@
 
                                 </div>
                                 <div>
-                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                    <button data-product="{{ item.id }}" data-action="add"
+                                            class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +146,7 @@
 
                 <!-- Card FOUR -->
                 <div class="tab-pane fade" id="nav-Bed" role="tabpanel" aria-labelledby="nav-Bed-tab">
-                     <div class="row">
+                    <div class="row">
                         {% for item in sanpham3 %}
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="single-new-arrival mb-50 text-center">
@@ -142,7 +164,9 @@
 
                                 </div>
                                 <div>
-                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                    <button data-product="{{ item.id }}" data-action="add"
+                                            class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +175,7 @@
                 </div>
                 <!--card-Five -->
                 <div class="tab-pane fade" id="nav-Cas" role="tabpanel" aria-labelledby="nav-Casio-tab">
-                     <div class="row">
+                    <div class="row">
                         {% for item in sanpham4 %}
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="single-new-arrival mb-50 text-center">
@@ -169,7 +193,9 @@
 
                                 </div>
                                 <div>
-                                    <button data-product="{{ item.id }}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng</button>
+                                    <button data-product="{{ item.id }}" data-action="add"
+                                            class="btn btn-outline-secondary add-btn update-cart">Thêm vào giỏ hàng
+                                    </button>
                                 </div>
                             </div>
                         </div>

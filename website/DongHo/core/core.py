@@ -52,6 +52,9 @@ def themchitiet(id,id_don):
         ChiTietDon.objects.create(Don = donhang,
                                   SanPham = item.SanPham,
                                   SoLuong = item.SoLuong)
+        sanpham = SanPham.objects.get(pk = item.SanPham.id)
+        sanpham.SoLuongHang = sanpham.SoLuongHang - item.SoLuong
+        sanpham.save()
 
 
 

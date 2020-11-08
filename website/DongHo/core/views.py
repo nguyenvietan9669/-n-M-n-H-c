@@ -109,8 +109,11 @@ class Register(View):
         birth = request.POST['birth']
         phone = request.POST['phone']
         e = str(email)
-        cus = CustomerUser.objects.filter(email=e)
-        if cus is None:
+        try:
+            cus = CustomerUser.objects.get(email=e)
+            messages.error(request, 'Email đã được dùng để đăng ký cho tài khoản khác')
+            return render(request, 'login/register.html')
+        except:
             email = EmailMessage(
                 'Thư gửi mã xác nhận',
                 template,
@@ -129,9 +132,6 @@ class Register(View):
                 'phone': phone
             }
             return render(request, 'login/confirm_email.html', content)
-        else:
-            messages.error(request, 'Email đã được dùng để đăng ký cho tài khoản khác')
-            return render(request, 'login/register.html')
 
 
 class Confirm(View):
