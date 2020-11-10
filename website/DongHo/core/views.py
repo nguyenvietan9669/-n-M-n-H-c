@@ -587,13 +587,20 @@ def eventadmin(request):
 
 
 def eventdetail(request,id):
+    if request.user.is_authenticated:
+        user = request.user
+        user, created = CustomerUser.objects.get_or_create(username=user)
+        tongitem = user.get_cart_items
+    else:
+        user = {'get_cart_total': 0, 'get_cart_items': 0}
+        tongitem = user['get_cart_items']
     sanpham = []
     sukien = SuKien.objects.get(pk = id)
     detail = sukien.chitiet_sukien_set.all()
     for item in detail:
         pro = SanPham.objects.get(pk = item.SanPham.id)
         sanpham.append(pro)
-    return render(request,'cuahang/event.html',{"sanpham":sanpham,"sukien":sukien})
+    return render(request,'cuahang/event.html',{"sanpham":sanpham,"sukien":sukien,"tongitem":tongitem})
 
 
 @decorators.login_required(login_url='/login/')
